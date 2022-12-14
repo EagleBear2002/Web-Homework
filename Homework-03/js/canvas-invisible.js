@@ -42,7 +42,7 @@ function encodeImg(src, id, color) {
         ctx.translate(img.width / 2, img.height / 2);
         ctx.rotate(Math.random() * 90 * Math.PI / 180);             // 围绕中心点旋转随机角度作为初始倾斜角度
 
-        content = "YDJSIR";
+        content = "EagleBear2002-201250172";
         step = 200;
         rowNum = img.width / step;
         lineNum = img.height / step;

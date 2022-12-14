@@ -1,24 +1,71 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width initial-scale=1'>
-    <title>index</title>
+    <meta charset="UTF-8">
+    <title>Web 前端开发第三次作业</title>
+    <link href="css/global.css" type="text/css" rel="stylesheet">
+    <link href="css/main.css" type="text/css" rel="stylesheet">
 </head>
+
 <body>
-<div class='typora-export-content'>
-    <div id='write' class=' first-line-indent'><h1 id='我是主页'><span>我是主页</span></h1>
-        <a href="img3.html"><img style="width:30%" src="images/img3.jpg" referrerpolicy="no-referrer" alt="" width="600"></a>
-        <img style="width:30%" src="images/se1.jpg" referrerpolicy="no-referrer" alt="蒙民伟楼六楼" width="600">
-        <img style="width:30%" src="images/se2.jpg" referrerpolicy="no-referrer" alt="软院院庆" width="600">
-        <img style="width:30%" src="images/img1.jpg" referrerpolicy="no-referrer" alt="" width="600">
-        <img style="width:30%" src="images/img2.jpg" referrerpolicy="no-referrer" alt="" width="600">
-        <img style="width:30%" src="images/img3.jpg" referrerpolicy="no-referrer" alt="" width="600">
-        <img style="width:30%" src="images/img4.jpg" referrerpolicy="no-referrer" alt="" width="600">
-        <!--        <img src="images/map1.jpg" referrerpolicy="no-referrer" alt="南京大学仙林校区地图" width="600">-->
-        <!--        <a href="img3.html"><img src="images/map2.jpg" referrerpolicy="no-referrer" alt="南京大学鼓楼校区地图"-->
-        <!--                                 width="600"></a>-->
+<header>
+    <div id="login">
+        <h1>Web 前端开发第三次作业</h1>
+    </div>
+    <div>
+        <a href="login.html">登录</a>
+    </div>
+    <div>
+        <a href="regist.html">注册</a>
+    </div>
+    <nav>
+        <ul class="menu">
+            <li class="type"><a href="#">主页</a></li>
+            <li class="type"><a href="#fall">鼓楼的秋</a></li>
+            <li class="type"><a href="#se">软件学院</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="block" id="fall">
+    <h1>鼓楼的秋</h1>
+    <hr class="seperator"/>
+    <div class="picture">
+        <figure><a href="subpage.html?img1.jpg"><img src="images/img1.jpg" alt="img1"/></a>
+            <figcaption>来自表白墙</figcaption>
+        </figure>
+    </div>
+    <div class="picture">
+        <figure><a href="subpage.html?img2.jpg"><img src="images/img2.jpg" alt="img2"/></a>
+            <figcaption>摄于运动会</figcaption>
+        </figure>
+    </div>
+    <div class="picture">
+        <figure><a href="subpage.html?img3.jpg"><img src="images/img3.jpg" alt="img3"/></a>
+            <figcaption>摄于南园</figcaption>
+        </figure>
+    </div>
+    <div class="picture">
+        <figure><a href="subpage.html?img4.jpg"><img src="images/img4.jpg" alt="img4"/></a>
+            <figcaption>摄于南园</figcaption>
+        </figure>
     </div>
 </div>
+
+<div class="block" id="se">
+    <h1>软件学院</h1>
+    <hr class="seperator"/>
+    <div class="picture">
+        <figure><a href="subpage.html?se1.jpg"><img src="images/se1.jpg" alt="se1"/></a>
+            <figcaption>摄于蒙民伟楼六楼</figcaption>
+        </figure>
+    </div>
+    <div class="picture">
+        <figure><a href="subpage.html?se2.jpg"><img src="images/se2.jpg" alt="se2"/></a>
+            <figcaption>摄于费彝民楼 B 区</figcaption>
+        </figure>
+    </div>
+</div>
+
 </body>
 </html>

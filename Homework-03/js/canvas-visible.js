@@ -40,7 +40,7 @@
                     // 随机颜色，且确保透明度不超过50%
                     ctx.fillStyle = "rgba(255,255,255,0.7)";
                     // 线列加水印，内容是当前用户和UNIX时间戳
-                    ctx.fillText(content + " " + myDate.getTime(), step * (i - Num / 2), step * (j - Num / 2));
+                    ctx.fillText(content, step * (i - Num / 2), step * (j - Num / 2));
                 }
                 ctx.rotate(-shuffle * 5 * Math.PI / 180);       // 随机旋转角度
                 // shuffle = Math.random();

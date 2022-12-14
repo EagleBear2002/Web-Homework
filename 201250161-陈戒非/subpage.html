@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看图片</title>
+    <link href="css/subPage.css" type="text/css" rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+    <div id="login">
+        <h1>南大秋景</h1>
+    </div>
+    <nav>
+        <ul class="menu">
+            <li class="type"><a href="index.html">主页</a></li>
+            <li class="type"><a href="index.html#building">秋夕</a></li>
+            <li class="type"><a href="index.html#people">山居秋暝</a></li>
+            <li class="type"><a href="index.html#sightseeing">风景</a></li>
+            <li class="type"><a href="MyInfo.html">我的信息</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="warkmask-conotainer">
+    <div class="watermark "></div>
+
+    <!--<a id="image"></a>-->
+    <!--<canvas id="image" class="content-box" width="2000px" height="3000px"></canvas>-->
+    <img id="image1"></img>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!--<script type="text/javascript" src="js/cryptostego.min.js"></script>-->
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/mersenne-twister.js"></script>
+<script type="text/javascript" src="js/readimg.js"></script>
+<script type="text/javascript" src="js/setimg.js"></script>
+<script type="text/javascript" src="js/sha512.js"></script>
+<script type="text/javascript" src="js/subpage.js"></script>
+<script type="text/javascript" src="js/utf_8.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+
+<script>
+    function writeIMG(localLink) {
+        loadImgToCanvas(localLink, write)
+
+        function write() {
+            if (writeMsgToCanvas('canvas', '201250161', '', 0) === true) {
+                console.log("傅里叶变化成功")
+
+                var myCanvas = document.getElementById("canvas");
+                var image = myCanvas.toDataURL("image/png");
+
+                var element = document.getElementById('image1')
+                element.setAttribute('src', image)
+            }
+        }
+
+    }
+
+    function loadImgToCanvas(src, callback) {
+        maxsize = 500;
+        var image = new Image();
+        image.onload = function () {
+            console.log("onload")
+            var w = image.width;
+            var h = image.height;
+            if (maxsize > 0) {
+                if (w > maxsize) {
+                    h = h * (maxsize / w);
+                    w = maxsize;
+                }
+                if (h > maxsize) {
+                    w = w * (maxsize / h);
+                    h = maxsize;
+                }
+                w = Math.floor(w);
+                h = Math.floor(h);
+            }
+            var canvas = document.createElement('canvas');
+            canvas.id = 'canvas';
+            canvas.width = w;
+            canvas.height = h;
+            canvas.style.display = "none";
+            var body = document.getElementsByTagName("body")[0];
+            body.appendChild(canvas);
+            var context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, w, h);
+            callback();
+            document.body.removeChild(canvas);
+        };
+        image.src = src;
+    }
+
+    var link = window.location.search.substring(1)
+    link = "pics/" + link
+    console.log(link)
+    writeIMG(link)
+
+    /*window.onload = ()=>{
+        var picture = new Image()
+
+        var link = window.location.search.substring(1)
+        link = "images/" + link
+        picture.src = link
+        picture.alt = link
+        picture.onload = function (){
+            var canvas = document.getElementById('image')
+            var context = canvas.getContext("2d")
+            context.drawImage(picture,document.documentElement.clientWidth*0.1,0,document.documentElement.clientWidth*0.8,document.documentElement.clientHeight)
+
+            console.log("AAA")
+        }
+    }
+
+
+    var t = writeMsgToCanvas('image',"201250161CJF","",1)
+    if (t===true){
+        console.log("傅里叶变化水印成功")
+    }*/
+</script>
+
+<script src="js/subpage.js" type="text/javascript" rel="script"></script>
+</body>
+</html>
