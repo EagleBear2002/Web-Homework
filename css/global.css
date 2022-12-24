@@ -3,8 +3,16 @@ body {
     background-repeat: no-repeat;
 }
 
+.dark {
+    background-color: black;
+}
+
+.light {
+    background-color: white;
+}
+
 h1 {
-    color: white;
+    color: grey;
 }
 
 header {

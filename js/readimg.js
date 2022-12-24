@@ -19,17 +19,6 @@ function get_bits_lsb(imgData) {
 }
 
 function get_dct_y(channel_data, channel_width, channel_length, multiply, loc) {
-    /* get bits from Y channel
-    Input:
-        channel_data (1D array of size (channel_width * channel_length)): manipulated data
-        channel_width (int): channel width
-        channel_length (int): channel length
-        multiply (int): int for Q matrix to be multiplied
-        loc (1D array of int): which location on block to stego on.
-    Output:
-        bits_stream.
-    */
-
     var row_block = Math.floor(channel_length / 8);
     var col_block = Math.floor(channel_width / 8);
     var num_block_bits = loc.length;

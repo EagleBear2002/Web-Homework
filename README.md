@@ -1,17 +1,32 @@
-# Web 前端开发-作业 3
+# Web 前端开发-作业 4
 
-## 页面导航
+<center>熊丘桓 201250172
 
-- [登录页面](login.html)，点击“点击注册”链接跳转至注册页面
-- [注册页面](register.html)
-- [一级页面](index.html)，点击第一张图片进入二级页面，点击第三张图片进入带水印的二级页面
-- [二级页面](img3.html)
-- [带水印的二级页面](se2.html)，背景实现 svg 可见水印，图片实现傅里叶变换水印
+## 功能实现
 
-## svg 可见水印实现
+实现点击按钮切换主题。
 
-主要参考文档实现，实现代码在 `src/waterMark.js`。
+![light 主题](README/image-20221224151105431.png)
 
-## 傅里叶变换不可见水印
+![dark 主题](README/image-20221224151053692.png)
 
-## 实现效果
+## 核心代码
+
+核心代码在 `js/theme.js` 中：
+
+```js
+var dark = false;
+
+function switchTheme() {
+    if (dark === false) {
+        document.body.style.backgroundColor = 'black';
+        dark = true;
+        document.getElementById('switchThemeButton').innerText = '切换至 light 主题';
+    } else {
+        document.body.style.backgroundColor = 'white';
+        dark = false;
+        document.getElementById('switchThemeButton').innerText = '切换至 dark 主题';
+    }
+}
+```
+
