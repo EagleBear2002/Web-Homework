@@ -56,7 +56,7 @@ var observer = new MutationObserver(function (mutationsList, observer) {
 })
 
 document.querySelectorAll('.monitoring').forEach(item => {
-    observer.observe(item.parentNode, { attributes: true, childList: true, subtree: true })
+    observer.observe(item.parentNode, {attributes: true, childList: true, subtree: true})
 })
 
 /*var link = window.location.search.substring(1)
