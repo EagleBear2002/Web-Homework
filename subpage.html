@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看图片</title>
+    <link href="css/subPage.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <div id="login">
+        <h1>Web 前端开发第三次作业</h1>
+    </div>
+    <div>
+        <a href="login.html">登录</a>
+    </div>
+    <div>
+        <a href="regist.html">注册</a>
+    </div>
+    <nav>
+        <ul class="menu">
+            <li class="type"><a href="#">主页</a></li>
+            <li class="type"><a href="#fall">鼓楼的秋</a></li>
+            <li class="type"><a href="#se">软件学院</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="warkmask-conotainer">
+    <div class="watermark "></div>
+
+    <!--<a id="image"></a>-->
+    <!--<canvas id="image" class="content-box" width="2000px" height="3000px"></canvas>-->
+    <img id="image1"></img>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/mersenne-twister.js"></script>
+<script type="text/javascript" src="js/readimg.js"></script>
+<script type="text/javascript" src="js/setimg.js"></script>
+<script type="text/javascript" src="js/sha512.js"></script>
+<script type="text/javascript" src="js/subpage.js"></script>
+<script type="text/javascript" src="js/utf_8.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+
+<script>
+    function writeIMG(localLink) {
+        loadImgToCanvas(localLink, write)
+
+        function write() {
+            if (writeMsgToCanvas('canvas', 'EagleBear-201250172', '', 0) === true) {
+                console.log("傅里叶变化成功")
+
+                var myCanvas = document.getElementById("canvas");
+                var image = myCanvas.toDataURL("image/png");
+
+                var element = document.getElementById('image1')
+                element.setAttribute('src', image)
+            }
+        }
+
+    }
+
+    function loadImgToCanvas(src, callback) {
+        maxsize = 500;
+        var image = new Image();
+        image.onload = function () {
+            console.log("onload")
+            var w = image.width;
+            var h = image.height;
+            if (maxsize > 0) {
+                if (w > maxsize) {
+                    h = h * (maxsize / w);
+                    w = maxsize;
+                }
+                if (h > maxsize) {
+                    w = w * (maxsize / h);
+                    h = maxsize;
+                }
+                w = Math.floor(w);
+                h = Math.floor(h);
+            }
+            var canvas = document.createElement('canvas');
+            canvas.id = 'canvas';
+            canvas.width = w;
+            canvas.height = h;
+            canvas.style.display = "none";
+            var body = document.getElementsByTagName("body")[0];
+            body.appendChild(canvas);
+            var context = canvas.getContext('2d');
+            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, w, h);
+            callback();
+            document.body.removeChild(canvas);
+        };
+        image.src = src;
+    }
+
+    var link = window.location.search.substring(1)
+    link = "images/" + link
+    console.log(link)
+    writeIMG(link)
+
+</script>
+
+<script src="js/waterMark.js" type="text/javascript" rel="script"></script>
+</body>
+</html>
