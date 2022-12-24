@@ -6,16 +6,6 @@
     background: rosybrown;
 }
 
-header {
-    background-color: purple;
-    position: fixed;
-    top: 0;
-    margin-left: -8px;
-    height: 100px;
-    width: 100%;
-    z-index: 10;
-}
-
 #login {
     float: left;
     clear: right;
@@ -65,7 +55,7 @@ figure {
     display: block;
     width: 312px;
     height: 195px;
-    background: #e7e3d8;
+    background: red;
     margin: 0;
     padding: 9px;
     text-align: left;
@@ -73,7 +63,6 @@ figure {
 
 .block > h1 {
     width: fit-content;
-    background-color: #e7e3d8;
 }
 
 figure img {

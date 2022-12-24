@@ -13,13 +13,9 @@ header {
     clear: right;
 }
 
-#login h1 {
-    font-family: 华光彩云_CNKI, serif;
-}
-
 ul.menu {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     float: right;
 }
 
@@ -48,7 +44,6 @@ ul.menu > li > a:active {
     background-color: #FF0000;
 }
 
-
 #image1 {
     width: 80%;
     height: 60%;
@@ -56,14 +51,12 @@ ul.menu > li > a:active {
     margin-left: 10%;
 }
 
-
 .watermark {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* 鼠标穿透 */
     pointer-events: none;
 }
 

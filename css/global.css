@@ -3,8 +3,17 @@ body {
     background-repeat: no-repeat;
 }
 
-.separator {
-    height: 3px;
-    border: none;
-    border-top: 3px double salmon;
+h1 {
+    color: white;
 }
+
+header {
+    background-color: purple;
+    position: fixed;
+    top: 0;
+    margin-left: -8px;
+    height: 100px;
+    width: 100%;
+    z-index: 10;
+}
+
