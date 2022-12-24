@@ -28,10 +28,7 @@
 
 <div class="warkmask-conotainer">
     <div class="watermark "></div>
-
-    <!--<a id="image"></a>-->
-    <!--<canvas id="image" class="content-box" width="2000px" height="3000px"></canvas>-->
-    <img id="image1"></img>
+    <img id="image1">
 </div>
 
 <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -50,7 +47,7 @@
 
         function write() {
             if (writeMsgToCanvas('canvas', 'EagleBear-201250172', '', 0) === true) {
-                console.log("傅里叶变化成功")
+                console.log("Fourier transform successfully!")
 
                 var myCanvas = document.getElementById("canvas");
                 var image = myCanvas.toDataURL("image/png");
@@ -59,16 +56,15 @@
                 element.setAttribute('src', image)
             }
         }
-
     }
 
     function loadImgToCanvas(src, callback) {
-        maxsize = 500;
-        var image = new Image();
+        const maxsize = 500;
+        const image = new Image();
         image.onload = function () {
             console.log("onload")
-            var w = image.width;
-            var h = image.height;
+            let w = image.width;
+            let h = image.height;
             if (maxsize > 0) {
                 if (w > maxsize) {
                     h = h * (maxsize / w);
@@ -81,14 +77,14 @@
                 w = Math.floor(w);
                 h = Math.floor(h);
             }
-            var canvas = document.createElement('canvas');
+            const canvas = document.createElement('canvas');
             canvas.id = 'canvas';
             canvas.width = w;
             canvas.height = h;
             canvas.style.display = "none";
-            var body = document.getElementsByTagName("body")[0];
+            const body = document.getElementsByTagName("body")[0];
             body.appendChild(canvas);
-            var context = canvas.getContext('2d');
+            const context = canvas.getContext('2d');
             context.drawImage(image, 0, 0, image.width, image.height, 0, 0, w, h);
             callback();
             document.body.removeChild(canvas);
@@ -96,7 +92,7 @@
         image.src = src;
     }
 
-    var link = window.location.search.substring(1)
+    let link = window.location.search.substring(1);
     link = "images/" + link
     console.log(link)
     writeIMG(link)
