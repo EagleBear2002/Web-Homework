@@ -1,5 +1,11 @@
 # Web前端开发-作业5
 
+## 运行说明
+
+1. 安装 Node.js：终端输入 `npm install`；
+2. 输入`node server.js`，启动服务端；
+3. 在 WebStorm 或浏览器中打开 `login.html` 以进入登录页面。
+
 ## 实验功能和设计
 
 1. 使用 `node.js` 框架；
@@ -26,12 +32,6 @@ CREATE TABLE `user` (
 	PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
-
-## 运行说明
-
-1. 安装 Node.js：终端输入 `npm install`；
-2. 输入`node server.js`，启动服务端；
-3. 在 WebStorm 或浏览器中打开 `login.html` 以进入登录页面。
 
 ## 注册
 
