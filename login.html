@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.7,user-scale=1">
+    <title>Web 前端开发-登录</title>
+    <link rel="stylesheet" type="text/css" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+</head>
+
+<body>
+<div class="box">
+    <h2>Web 前端开发-登录</h2>
+    <form class="formBox">
+
+        <div class="inputBox">
+            <input id="email" type="text" required>
+            <label>邮箱</label>
+        </div>
+
+        <div class="inputBox">
+            <input id="password" type="password" required>
+            <label>密码</label>
+        </div>
+
+        <div class="inputButtonBox">
+            <input class="btn signIn" type="submit" name="" value="登录" onclick="return login()">
+            <input class="btn signUp" type="submit" name="" value="注册"
+                   onclick="window.location.href = 'signup.html'">
+        </div>
+
+    </form>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            if (email === '' || password === '') {
+                window.alert('输入不能为空')
+                location.reload()
+            } else {
+                const param = {
+                    email: email,
+                    password: password,
+                };
+                console.log(param)
+                $.get("http://localhost:3001/login", param, function (result) {
+                    console.log(result);
+                    if (result === 1) {
+                        window.alert('邮箱不存在');
+                        location.reload();
+                    } else if (result === 2) {
+                        window.alert('密码错误');
+                        location.reload();
+                    } else {
+                        sessionStorage.setItem('email', email);
+                        window.location.href = 'homepage.html';
+                    }
+                });
+            }
+            return false;
+        }
+    </script>
+
+</div>
+</body>
+
+</html>
