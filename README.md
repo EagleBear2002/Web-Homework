@@ -1,214 +1,110 @@
-# Web前端开发 作业5
+# Web前端开发-作业5
+
+## 实验功能和设计
+
+1. 使用 `nodejs` 框架；
+2. 使用本地 MySQL 数据库；
+3. 可以使用邮箱注册/登录完成整体流程，第三方账号体现在登录界面；
+4. 注册页面应使用正则表达式提示密码强度；
+5. 登录页面可与一级页面结合，登陆后自动跳转到一级页面；
+
+## 数据库配置
+
+使用本地 MySQL 数据库。
+
+数据结构和初始化如下：
 
 ```sql
-CREATE DATABASE IF NOT EXISTS web CHARACTER SET UTF8;
-USE web;
+CREATE DATABASE IF NOT EXISTS WebProgramming CHARACTER SET UTF8;
+USE WebProgramming;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
 	`email` varchar(64) NOT NULL,
 	`name` varchar(64) NOT NULL,
 	`password` varchar(64) NOT NULL,
-	`gender` int NOT NULL,
 	PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
+## 运行说明
 
+1. 安装 Node.js：终端输入 `npm install`；
+2. 输入`node server.js`，启动服务端；
+3. 在 WebStorm 或浏览器中打开 `login.html` 以进入登录页面。
 
-## 1. 作业要求
+## 注册
 
-1. 必须nodejs， 数据库任选。
-2. 可以邮箱注册/登录完成整体流程，其他方式（手机号、第三方账号等）仅体现在界面上，可不实现具体流程。
-3. 密码、验证码可参考相应文献，选择合理实现方案。
-4. 注册页面应提示密码规则和强度。合理使用正则表达式。
-5. 登录页面可与一级页面结合，需在一二级页面中显示登录用户信息。
-6. 自行确定鉴权方案。
+### 用户名
 
-## 2. 文件结构
+不同邮箱注册的用户用户名允许重复。
 
-```bash
-│  login.html
-│  package-lock.json
-│  package.json
-│  README.md
-│  server.js
-│
-├─assets
-│
-├─css
-|
-├─html
-```
+### 密码
 
-## 3. 运行说明
+#### 实现方案
 
-> 运行前需要安装Node.js
+笔者参考[浅谈密码强度规则的5个版本](https://www.woshipm.com/pd/595757.html) 中的常规版密码强度规则，实现了自己的密码强度规则：
 
-因为我采用了在云服务器运行数据库，所以不需要本地建立数据库。
+1. 初始密码级别为 0；
+2. 当密码包含小写字母时，密码级别加 1；
+3. 当密码包含大写字母时，密码级别加 1；
+4. 当密码包含数字时，密码级别加 1；
+5. 当密码包含字母和数字以外的特殊字符时，密码级别加 1；
+6. 当密码长度小于 6 时，密码级别为 0；
+7. 密码强度最高为 3；
+8. 密码级别为 0、1、2、3 分别对应不满足条件、弱、中、强。
 
-运行流程：
+#### 实现功能
 
-1. 需要在目录下打开终端，输入 `npm install`
-2. 然后输入`node server.js`，启动服务端
-3. 使用Chrome等浏览器打开index.html，即可进入登陆页面
+1. 前端计算用户注册使用的的密码的密码强度；
+2. 不满足其条件的密码无法通过注册；
+3. 在注册过程中，密码强度等级使用不同颜色和长度的矩形来表示；
+4. 如果两次输入的密码不同，网页提示：“密码不匹配”。
 
-## 4. 实现效果
+| ![](README/image-20230114184516181.png) | ![](README/image-20230114185627625.png) |
+| --------------------------------------- | --------------------------------------- |
 
-### 4.1 注册流程
+### 电子邮箱注册
 
-#### **密码强度**
+1. 输入的电子邮箱必须是没有注册过的，否则会收到网页提示：“该邮箱已被注册”。
 
-密码强度分为4个等级：不满足条件、弱、中、强。
+![image-20230114184914544](README/image-20230114184914544.png)
 
-![pwdStrength](http://img.nebular.site/md/pwdStrength.gif)
+### 验证码
 
-其中，不满足条件的密码无法通过注册。
+#### 实现方案
 
-![image-20230103170230302](http://img.nebular.site/md/image-20230103170230302.png)
+笔者在前端使用 canvas 直接生成验证码，不使用后端接口，这种方法有有如下优点：
 
-**验证码**
+1. 减少后端接口的使用，减轻服务器负担；
+2. 前端直接生成验证码，降低生成传输验证码的前后端通信开销。
 
-必须输入正确的验证码才能完成注册流程。
+这种方法还有如下缺点：
 
-![image-20230103170413676](http://img.nebular.site/md/image-20230103170413676.png)
+1. 用户可能会使用技术手段绕过前端生成的验证码。
 
-如果看不清验证码，点击验证码即可更换验证码
+#### 实现功能
 
-![verify](http://img.nebular.site/md/verify.gif)
+1. 用户需要输入正确的验证码才能完成注册流程；
+2. 点击验证码图片即可更换验证码；
+3. 输入验证码错误会收到网页提示：“验证码错误”
 
-**电子邮箱注册**
+![](README/image-20230114184736263.png)
 
-输入的电子邮箱必须是没有注册过的
+### 注册成功
 
-![image-20230103170846585](http://img.nebular.site/md/image-20230103170846585.png)
+成功注册账号，页面提示：“注册成功”并自动跳转至登陆页面。
 
-**成功注册**
+| ![](README/image-20230114185003697.png) | ![](README/image-20230114192140504.png) |
+| --------------------------------------- | --------------------------------------- |
 
-各项条件都满足后，即可成功注册账号，之后自动跳转至登录页面
 
-![image-20230103170950467](http://img.nebular.site/md/image-20230103170950467.png)
+## 登录
 
+1. **一般的浏览器会自动填充被保存的用户名**，需要用户手动填入注册的**邮箱**；
+2. 输入已经注册的邮箱地址和密码即可成功登录并自动跳转到一级页面；
+3. 如果输入的邮箱未注册，网页提示：“邮箱不存在”；
+4. 如果输入的密码与注册的密码不同，网页提示：“密码错误”。
 
-### 4.2 登录流程
-
-需要输入已经注册的邮箱账号
-
-![image-20230103171326306](http://img.nebular.site/md/image-20230103171326306.png)
-
-并且输入正确的密码![image-20230103171401562](http://img.nebular.site/md/image-20230103171401562.png)
-
-输入正确的邮箱和密码后，自动跳转至一级页面
-
-### 4.3 前端鉴权以及在一二级页面显示用户信息
-
-我采用了session-cookie鉴权方式，用户信息存储在session中。
-
-用户登录后，在一级页面和二级页面的顶部，会显示用户的邮箱以及欢迎语。
-
-一级页面：
-
-![image-20230103171519931](http://img.nebular.site/md/image-20230103171519931.png)
-
-二级页面：
-
-![image-20230103171550962](http://img.nebular.site/md/image-20230103171550962.png)
-
-如果用户未登录就进入一二级页面，会弹窗提示需要先登录，之后自动跳转至登录页面。
-
-![image-20230103171925886](http://img.nebular.site/md/image-20230103171925886.png)
-
-## 5. 实现方案说明
-
-### 5.1 框架
-
-我使用了nodejs、express框架，MySQL数据库。
-
-### 5.2 密码强度
-
-我采用的密码强度规则基于参考文档https://www.woshipm.com/pd/595757.html中的常规版密码强度规则，具体细则如下：
-
-1. 初始密码级别为0
-2. 当密码长度小于6时，密码级别为0；
-3. 当密码包含小写字母时，密码级别加1；
-4. 当密码包含大写字母时，密码级别加1；
-5. 当密码包含特殊字符时，密码级别加1；
-6. 当密码包含数字时，密码级别加1；
-
-最后得出密码强度：
-
-| 密码级别 | 密码强度   |
-| -------- | ---------- |
-| <=0      | 不满足条件 |
-| 1        | 弱         |
-| 2        | 中         |
-| >=3      | 强         |
-
-### 5.3 验证码
-
-我在前端使用canvas直接生成验证码，不使用后端接口，这样子做有以下优点：
-
-1. 减少后端接口的使用，减轻服务器负担
-2. 前端直接生成，响应速度更快
-
-### 5.4 服务端
-
-服务器端监听3001接口，提供2个接口：登录和注册，关键代码如下：
-
-```js
-app.get('/login',function (req, res) {
-    const params = req.query;
-    console.log(params)
-    const query = "SELECT * from user where email=" + "\"" + params.email + "\"";
-    console.log(query)
-    connection.query(query, function (error, result) {
-        if (error) throw error;
-        if (result.length === 0) {
-            console.log("账号不存在")
-            res.send(1)
-        } else {
-            if (result[0].password === params.password) {
-                console.log("登录成功")
-                res.send(0)
-            } else {
-                res.send(2)
-            }
-        }
-    })
-})
-
-app.get('/signup',function (req, res) {
-    const params = req.query;
-    console.log(params)
-    const query = "select * from user where email=" + "\"" + params.email + "\"";
-    connection.query(query, function (error, result) {
-        if (error) throw error;
-        if (result.length > 0) {
-            console.log("邮箱已存在")
-            res.send(1)
-        } else {
-            const signupQuery = "insert into user(email, name, password) values(" + "\"" + params.email + "\",\"" + params.userName + "\",\"" + params.password + "\")";
-            console.log(signupQuery)
-            connection.query(signupQuery, function (error, result) {
-                if (error) throw error;
-                console.log("注册成功")
-                res.send(0)
-            })
-        }
-    })
-})
-```
-
-
-
-### 5.5 鉴权
-
-我使用了session-cookie认证方式，该方式适用于一般中大型的网站，框架流程图如下：
-
-![image-20230103172526436](http://img.nebular.site/md/image-20230103172526436.png)
-
-该认证方式有以下优点：
-
-1. Cookie 简单易用
-2. Session 数据存储在服务端，相较于JWT 方便进行管理，也就是当用户登录和主动注销，只需要添加删除对应的Session 就可以了，方便管理
-3. 只需要后端操作即可，前端可以无感进行操作；
+| ![](README/image-20230114185237576.png) | ![](README/image-20230114185335229.png) |
+| --------------------------------------- | --------------------------------------- |
 

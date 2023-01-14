@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/global.css">
     <link rel="stylesheet" type="text/css" href="css/register.css">
 </head>
+
 <body>
 <div class="box">
     <h2>Web 前端开发-注册</h2>
@@ -45,7 +46,7 @@
         <div class="inputButtonBox">
             <input class="btn signUp" type="submit" name="" value="注册" onclick="return register()">
             <input class="btn backSignIn" type="submit" name="" value="返回"
-                   onclick="window.location.href = 'index.html'">
+                   onclick="window.location.href = 'login.html'">
         </div>
 
     </form>
@@ -106,7 +107,7 @@
                     console.log(result);
                     if (result === 0) {
                         window.alert('注册成功！');
-                        window.location.href = 'index.html';
+                        window.location.href = 'login.html';
                     } else if (result === 1) {
                         window.alert('该邮箱已被注册');
                     }
@@ -217,24 +218,27 @@
             this.oStrength = id.appendChild(div);
         };
         PasswordStrength.prototype.checkStrength = function (val) { //验证密码强度的函数
-            let lv = 0; //初始化提示消息为空
-            if (val.match(/[a-z]/g)) {
-                lv++;
-            } //验证是否包含字母
-            if (val.match(/[0-9]/g)) {
-                lv++;
-            } // 验证是否包含数字
-            if (val.match(/(.[^a-z0-9])/g)) {
-                lv++;
-            } //验证是否包含字母，数字，字符
-            if (val.length < 6) {
-                lv = 0;
-            } //如果密码长度小于6位，提示消息为空
-            if (lv > 3) {
-                lv = 3;
+            let level = 0; // 初始化密码级别为 0
+            if (val.match(/[A-Z]/g)) {
+                level++;
             }
-            console.log(lv);
-            this.oStrength.className = 'strengthLv' + lv;
+            if (val.match(/[a-z]/g)) {
+                level++;
+            }
+            if (val.match(/[0-9]/g)) {
+                level++;
+            }
+            if (val.match(/(.[^a-zA-Z0-9])/g)) {
+                level++;
+            }
+            if (val.length < 6) {
+                level = 0;
+            }
+            if (level > 3) {
+                level = 3;
+            }
+            console.log(level);
+            this.oStrength.className = 'strengthLv' + level;
         };
         new PasswordStrength('password', 'pwdStrength');
     </script>

@@ -5,10 +5,14 @@ app.use(cors());
 
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
-    host: '121.41.93.125',
+    // host: '121.41.93.125',
+    // user: 'root',
+    // password: '20020323wang.',
+    // database: 'web'
+    host: '127.0.0.1',
     user: 'root',
-    password: '20020323wang.',
-    database: 'web'
+    password: 'root',
+    database: 'WebProgramming'
 });
 
 connection.connect();
@@ -23,14 +27,14 @@ app.get('/login',function (req, res) {
     connection.query(query, function (error, result) {
         if (error) throw error;
         if (result.length === 0) {
-            console.log("账号不存在")
-            res.send(1)
+            console.log("账号不存在");
+            res.send(1);
         } else {
             if (result[0].password === params.password) {
-                console.log("登录成功")
-                res.send(0)
+                console.log("登录成功");
+                res.send(0);
             } else {
-                res.send(2)
+                res.send(2);
             }
         }
     })
@@ -38,7 +42,7 @@ app.get('/login',function (req, res) {
 
 app.get('/signup',function (req, res) {
     const params = req.query;
-    console.log(params)
+    console.log(params);
     const query = "select * from user where email=" + "\"" + params.email + "\"";
     connection.query(query, function (error, result) {
         if (error) throw error;
