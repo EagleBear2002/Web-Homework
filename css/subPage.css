@@ -45,10 +45,10 @@ ul.menu > li > a:active {
 }
 
 #image1 {
-    width: 80%;
+    width: 90%;
     height: 60%;
-    margin-top: 5%;
-    margin-left: 10%;
+    margin-top: 10%;
+    /*margin-left: 10%;*/
 }
 
 .watermark {
