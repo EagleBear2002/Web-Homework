@@ -106,7 +106,6 @@
         let imgElement = document.getElementById('image1');
         document.getElementById("image1").src = document.getElementById("image1").src;
         imgElement.onload = function () {
-
             let img_origin = cv.imread(imgElement);
             let img_target = new cv.Mat();
             img(img_origin, img_target);
