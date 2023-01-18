@@ -170,7 +170,7 @@ function writeMsgToCanvas_base(canvasid, msg, enc_key, use_dct, num_copy, multip
         msg (string): message to stego
         enc_key (string): encryption key for msg
         use_dct (bool): use true for DCT, false for LSB
-        num_copy (int): how many copies of each bit to write into image. Larger value is more robust but reduces capacity.
+        num_copy (int): how many copies of each bit to write into images. Larger value is more robust but reduces capacity.
 
         -- below only valid for use_dct=true --
 

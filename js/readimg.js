@@ -111,7 +111,7 @@ function readMsgFromCanvas_base(canvasid, enc_key, use_dct, num_copy, multiply, 
         canvasid: Canvas ID to read/write data
         enc_key (string): encryption key for msg
         use_dct (bool): use true for DCT, false for LSB
-        num_copy (int): how many copies of each bit to write into image. Larger value is more robust but reduces capacity.
+        num_copy (int): how many copies of each bit to write into images. Larger value is more robust but reduces capacity.
 
         -- below only valid for use_dct=true --
 

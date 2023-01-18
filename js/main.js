@@ -21,7 +21,7 @@ function writeMsgToCanvas(canvasid, msg, pass, mode) {
     }
 }
 
-//Read msg from the image in canvasid.
+//Read msg from the images in canvasid.
 //Return msg (null -> fail)
 function readMsgFromCanvas(canvasid, pass, mode) {
     mode = (mode === undefined) ? 0 : parseInt(mode);
@@ -43,7 +43,7 @@ function readMsgFromCanvas(canvasid, pass, mode) {
     }
 }
 
-//load image from html5 input and execute callback() if successful
+//load images from html5 input and execute callback() if successful
 function loadIMGtoCanvas(inputid, canvasid, callback, maxsize) {
     maxsize = (maxsize === undefined) ? 0 : maxsize;
     var input = document.getElementById(inputid);

@@ -89,7 +89,7 @@ function quantization_matrix(multiply) {
 function quantize_diff(multiply, loc, mat, encode_bits) {
     /* quantize the size 64 (8*8) matrix.
     Input:
-        multiply (int): the multiply for quantization matrix Q. Larger value is more robust but changes more image details.
+        multiply (int): the multiply for quantization matrix Q. Larger value is more robust but changes more images details.
         loc (array): where to apply quantization.
         mat (array of size 64): the matrix.
         encode_bits (0/1 bit array with same size as loc)
@@ -115,7 +115,7 @@ function quantize_diff(multiply, loc, mat, encode_bits) {
 function get_bit_from_quantized(multiply, loc, quantized_mat) {
     /* get bits from quantized size 64 (8*8) matrix.
     Input:
-        multiply (int): the multiply for quantization matrix Q. Larger value is more robust but changes more image details.
+        multiply (int): the multiply for quantization matrix Q. Larger value is more robust but changes more images details.
         loc (array): where quantization is applied.
         quantized_mat (array of size 64): the matrix.
     Output:
@@ -130,7 +130,7 @@ function get_bit_from_quantized(multiply, loc, quantized_mat) {
 }
 
 function img_16x16_to_8x8(mat) {
-    /* Resize image from 16 * 16 to 8 * 8
+    /* Resize images from 16 * 16 to 8 * 8
     Input:
         mat (size 256)
     Output:
@@ -144,7 +144,7 @@ function img_16x16_to_8x8(mat) {
 }
 
 function img_8x8_to_16x16(mat) {
-    /* Resize image from 8 * 8 to 16 * 16
+    /* Resize images from 8 * 8 to 16 * 16
     Input:
         mat (size 64)
     Output:
