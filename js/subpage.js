@@ -60,7 +60,7 @@ document.querySelectorAll('.monitoring').forEach(item => {
 })
 
 /*var link = window.location.search.substring(1)
-link = "images/" + link
+link = "image/" + link
 var a = document.getElementById('image')
 a.href = link
 var img = document.createElement('img')

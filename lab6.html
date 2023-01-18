@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <title>watermark2</title>
+</head>
+
+<div class="header">
+</div>
+
+<body>
+<p id="status">OpenCV.js is loading...</p>
+<div>
+    <div class="inputoutput">
+        <img id="imageSrc" alt="No Image" width="100%"/>
+        <div class="caption">原始图片</div>
+    </div>
+    <div class="inputoutput">
+        <canvas id="canvasOutput"></canvas>
+        <div class="caption">卡通化图片</div>
+    </div>
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="opencv.js"></script>
+<script type="text/javascript">
+    cv['onRuntimeInitialized'] = () => {
+        console.log("onRuntimeInitialized");
+        let canvasOutput = document.getElementById('canvasOutput');
+        let imgElement = document.getElementById('imageSrc');
+        document.getElementById("imageSrc").src = document.cookie;
+        imgElement.onload = function () {
+
+            let img_origin = cv.imread(imgElement);
+            let img_target = new cv.Mat();
+            img(img_origin, img_target);
+            img_origin.delete();
+            img_target.delete();
+        }
+    };
+
+    function img(img_origin, img_target) {
+        console.log("img");
+        let img_gray = cvtColor(img_origin);
+        let ksize1 = new cv.Size(5, 5);
+        let img_blurred1 = GaussianBlur(img_gray, ksize1);
+        let img_threshold1 = adaptiveThreshold(img_blurred1);
+        let img_blurred2 = GaussianBlur(img_threshold1, ksize1);
+        let img_threshold2 = threshold(img_blurred2);
+        let img_opening = bitwise_not(img_threshold2);
+        let ksize2 = new cv.Size(3, 3);
+        let img_opening_blurred = GaussianBlur(img_opening, ksize2);
+        img_target = img_opening_blurred;
+        cv.imshow('canvasOutput', img_target);
+    }
+
+    function cvtColor(img_origin) {
+        console.log("cvtColor");
+        let img_gray = new cv.Mat();
+        cv.cvtColor(img_origin, img_gray, cv.COLOR_RGBA2GRAY, 0);
+        return img_gray;
+    }
+
+    function GaussianBlur(img_origin, ksize) {
+        console.log("GaussianBlur");
+        let img_blurred = new cv.Mat();
+        cv.GaussianBlur(img_origin, img_blurred, ksize, 0);
+        return img_blurred;
+    }
+
+    function adaptiveThreshold(img_origin) {
+        console.log("adaptiveThreshold");
+        let img_threshold = new cv.Mat();
+        cv.adaptiveThreshold(img_origin, img_threshold, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY, 5, 2);
+        return img_threshold;
+    }
+
+    function threshold(img_origin) {
+        console.log("threshold");
+        let img_threshold = new cv.Mat();
+        cv.threshold(img_origin, img_threshold, 200, 255, cv.THRESH_BINARY);
+        return img_threshold;
+    }
+
+    function bitwise_not(img_origin) {
+        console.log("bitwise_not");
+        let img_opening = new cv.Mat();
+        let M = new cv.Mat();
+        let ksize = new cv.Size(3, 3);
+        M = cv.getStructuringElement(cv.MORPH_CROSS, ksize);
+        cv.morphologyEx(img_origin, img_opening, cv.MORPH_GRADIENT, M);
+        return img_opening;
+    }
+
+    let Module = {
+        onRuntimeInitialized() {
+            document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
+        }
+    };
+    Module.onRuntimeInitialized();
+</script>
+
