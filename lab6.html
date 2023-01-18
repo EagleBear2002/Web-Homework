@@ -2,17 +2,16 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
-    <title>watermark2</title>
+    <title>Web 前端开发-前端智能</title>
 </head>
 
 <div class="header">
 </div>
 
 <body>
-<p id="status">OpenCV.js is loading...</p>
 <div>
     <div class="inputoutput">
-        <img id="imageSrc" alt="No Image" width="100%"/>
+        <img id="imageSrc" alt="No Image" width="100%" src="image/se1.jpg"/>
         <div class="caption">原始图片</div>
     </div>
     <div class="inputoutput">
@@ -29,7 +28,7 @@
         console.log("onRuntimeInitialized");
         let canvasOutput = document.getElementById('canvasOutput');
         let imgElement = document.getElementById('imageSrc');
-        document.getElementById("imageSrc").src = document.cookie;
+        document.getElementById("imageSrc").src = document.getElementById("imageSrc").src;
         imgElement.onload = function () {
 
             let img_origin = cv.imread(imgElement);
