@@ -5,10 +5,6 @@ app.use(cors());
 
 const mysql = require('mysql2');
 const connection = mysql.createConnection({
-    // host: '121.41.93.125',
-    // user: 'root',
-    // password: '20020323wang.',
-    // database: 'web'
     host: '127.0.0.1',
     user: 'root',
     password: 'root',

@@ -36,7 +36,7 @@ waterDocumentSvg({
     // 文字大小
     fontSize: '24px',
     // 水印内容
-    content: 'EagleBear2002-201250172',
+    content: 'EagleBear2002',
     // 水印元素层级
     zIndex: 9,
     // 文字颜色
