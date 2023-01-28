@@ -2,7 +2,7 @@
 
 ## 运行说明
 
-本项目仅**使用最朴素的方式**实现了课程作业的**最低要求**，高端实现方式可参考**[NJUSE-21-Frontend](https://github.com/YDJSIR-NJU/NJUSE-21-Frontend)**。
+本项目仅**使用最朴素的方式**实现了课程作业的**最低要求**，高端实现方式可参考[NJUSE-21-Frontend](https://github.com/YDJSIR-NJU/NJUSE-21-Frontend)。
 
 1. 按照[数据库配置](#数据库配置)进行数据库配置；
 2. 安装 Node.js：终端输入 `npm install`；
